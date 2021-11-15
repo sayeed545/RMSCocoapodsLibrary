@@ -1,6 +1,6 @@
 //
 //  NSError+RMSOAuth.swift
-//  MainPOS
+//  RMSOAuth
 //
 //  Created by Developer on 29/10/21.
 //
@@ -15,8 +15,6 @@ public extension NSError {
     /// Criteria for invalid token error: WWW-Authenticate header contains a field "error" with
     /// value "invalid_token".
     ///
-    /// Also implements a special handling for the Facebook API, which indicates invalid tokens in a
-    /// different manner. See https://developers.facebook.com/docs/graph-api/using-graph-api#errors
     var isExpiredToken: Bool {
         guard self.domain == NSURLErrorDomain || self.domain == RMSOAuthError.Domain else {
             return false
@@ -40,9 +38,7 @@ public extension NSError {
                     for error in errors {
                         if let errorType = error["errorType"] as? String, errorType == "invalid_token" || errorType == "expired_token" {
                             return true
-                        } else if let urlString = self.userInfo[NSURLErrorFailingURLErrorKey] as? String, urlString.contains("api.twitter.com"), let errorCode = error["code"] as? Int, errorCode == 89 {
-                            // This is the code for expired or invalid twitter token
-                            // see: https://developer.twitter.com/en/docs/basics/response-codes
+                        } else if let _ = self.userInfo[NSURLErrorFailingURLErrorKey] as? String, let errorCode = error["code"] as? Int, errorCode == 89 {
                             return true
                         }
                     }
@@ -50,10 +46,8 @@ public extension NSError {
             }
         }
 
-        // Detect access token expiration errors from facebook
-        // Docu: https://developers.facebook.com/docs/graph-api/using-graph-api#errors
         if self.code == 400 {
-            if let urlString = self.userInfo[NSURLErrorFailingURLErrorKey] as? String, urlString.contains("graph.facebook.com") {
+            if (self.userInfo[NSURLErrorFailingURLErrorKey] as? String) != nil {
                 if let body = self.userInfo["Response-Body"] as? String,
                     let bodyData = body.data(using: RMSOAuthDataEncoding),
                     let json = try? JSONSerialization.jsonObject(with: bodyData, options: []),

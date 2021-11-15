@@ -1,6 +1,6 @@
 //
 //  RMSOAuthCredential.swift
-//  MainPOS
+//  RMSOAuth
 //
 //  Created by Developer on 29/10/21.
 //
@@ -124,6 +124,7 @@ open class RMSOAuthCredential: NSObject, NSSecureCoding, Codable {
     open internal(set) var oauthVerifier = ""
     open var version: Version = .oauth2
     open var signatureMethod: SignatureMethod = .HMAC_SHA1
+    open var baseURL = ""
 
     /// hook to replace headers creation
     open var headersFactory: RMSOAuthCredentialHeadersFactory?
@@ -152,6 +153,7 @@ open class RMSOAuthCredential: NSObject, NSSecureCoding, Codable {
         static let oauthVerifier = base + "oauth_verifier"
         static let version = base + "version"
         static let signatureMethod = base + "signatureMethod"
+        static let baseURL = base + "baseURL"
     }
 
     /// Cannot declare a required initializer within an extension.
@@ -222,6 +224,17 @@ open class RMSOAuthCredential: NSObject, NSSecureCoding, Codable {
             return nil
         }
         self.oauthVerifier = oauthVerifier
+        
+        guard let baseURL = decoder
+            .decodeObject(of: NSString.self,
+                          forKey: NSCodingKeys.baseURL) as String? else {
+            if #available(iOS 9, OSX 10.11, *) {
+                let error = CocoaError.error(.coderValueNotFound)
+                decoder.failWithError(error)
+            }
+            return nil
+        }
+        self.baseURL = baseURL
 
         self.oauthTokenExpiresAt = decoder
             .decodeObject(of: NSDate.self, forKey: NSCodingKeys.oauthTokenExpiresAt) as Date?
@@ -242,6 +255,7 @@ open class RMSOAuthCredential: NSObject, NSSecureCoding, Codable {
         coder.encode(self.oauthVerifier, forKey: NSCodingKeys.oauthVerifier)
         coder.encode(self.oauthTokenExpiresAt, forKey: NSCodingKeys.oauthTokenExpiresAt)
         coder.encode(self.version.toInt32, forKey: NSCodingKeys.version)
+        coder.encode(self.baseURL, forKey: NSCodingKeys.baseURL)
         if case .oauth1 = version {
             coder.encode(self.signatureMethod.rawValue, forKey: NSCodingKeys.signatureMethod)
         }
@@ -261,6 +275,7 @@ open class RMSOAuthCredential: NSObject, NSSecureCoding, Codable {
         case oauthTokenExpiresAt
         case version
         case signatureMethodRawValue
+        case baseURL
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -294,6 +309,7 @@ open class RMSOAuthCredential: NSObject, NSSecureCoding, Codable {
         self.oauthVerifier = try container.decode(type(of: self.oauthVerifier), forKey: .oauthVerifier)
         self.oauthTokenExpiresAt = try container.decodeIfPresent(Date.self, forKey: .oauthTokenExpiresAt)
         self.version = try container.decode(type(of: self.version), forKey: .version)
+        self.baseURL = try container.decode(type(of: self.baseURL), forKey: .baseURL)
 
         if case .oauth1 = version {
             self.signatureMethod = SignatureMethod(rawValue: try container.decode(type(of: self.signatureMethod.rawValue), forKey: .signatureMethodRawValue))!
@@ -440,6 +456,7 @@ open class RMSOAuthCredential: NSObject, NSSecureCoding, Codable {
             && lhs.oauthVerifier == rhs.oauthVerifier
             && lhs.version == rhs.version
             && lhs.signatureMethod == rhs.signatureMethod
+            && lhs.baseURL == rhs.baseURL
     }
 
 }

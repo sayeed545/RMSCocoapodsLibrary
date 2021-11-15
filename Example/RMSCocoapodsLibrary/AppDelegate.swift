@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RMSCocoapodsLibrary
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,6 +40,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        <#code#>
+//    }
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+//        guard let url = URLContexts.first?.url else {
+//            return
+//        }
+        //let editedURL = url.absoluteString.replacingOccurrences(of: "kepos://", with: "kepos://oauth-callback")
+       RMSOAuth.handle(url: url)
+        return true
     }
 
 

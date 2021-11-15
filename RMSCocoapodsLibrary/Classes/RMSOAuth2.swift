@@ -1,6 +1,6 @@
 //
 //  RMSOAuth2.swift
-//  MainPOS
+//  RMSOAuth
 //
 //  Created by Developer on 29/10/21.
 //
@@ -28,33 +28,37 @@ public class RMSOAuth2: RMSOAuth {
     var authorizeUrl: String
     var accessTokenUrl: String?
     var responseType: String
+    var baseURL: String
     var contentType: String?
     // RFC7636 PKCE
     var codeVerifier: String?
 
     // MARK: init
-    public init(clientID: String, clientSecret: String, authorizeUrl: URLConvertible, accessTokenUrl: URLConvertible? = nil, responseType: String, contentType: String? = nil) {
+    public init(clientID: String, clientSecret: String, authorizeUrl: URLConvertible, accessTokenUrl: URLConvertible? = nil, responseType: String, contentType: String? = nil, baseURL: String) {
         self.accessTokenUrl = accessTokenUrl?.string
         self.contentType = contentType
         self.clientID = clientID
         self.clientSecret = clientSecret
         self.authorizeUrl = authorizeUrl.string
         self.responseType = responseType
+        self.baseURL = baseURL
         super.init(clientID: clientID, clientSecret: clientSecret)
         self.client.credential.version = .oauth2
+        self.client.credential.baseURL = baseURL
     }
 
     public convenience init?(parameters: ConfigParameters) {
         guard let clientID = parameters["clientID"], let clientSecret = parameters["clientSecret"],
-            let responseType = parameters["responseType"], let authorizeUrl = parameters["authorizeUrl"] else {
+            let responseType = parameters["responseType"], let authorizeUrl = parameters["authorizeUrl"],
+            let baseURL = parameters["baseURL"] else {
                 return nil
         }
         if let accessTokenUrl = parameters["accessTokenUrl"] {
             self.init(clientID: clientID, clientSecret: clientSecret,
-                      authorizeUrl: authorizeUrl, accessTokenUrl: accessTokenUrl, responseType: responseType)
+                      authorizeUrl: authorizeUrl, accessTokenUrl: accessTokenUrl, responseType: responseType, baseURL: baseURL)
         } else {
             self.init(clientID: clientID, clientSecret: clientSecret,
-                      authorizeUrl: authorizeUrl, responseType: responseType)
+                      authorizeUrl: authorizeUrl, responseType: responseType, baseURL: baseURL)
         }
     }
 
@@ -64,7 +68,8 @@ public class RMSOAuth2: RMSOAuth {
             "clientSecret": clientSecret,
             "authorizeUrl": authorizeUrl,
             "accessTokenUrl": accessTokenUrl ?? "",
-            "responseType": responseType
+            "responseType": responseType,
+            "baseURL":baseURL
         ]
     }
 

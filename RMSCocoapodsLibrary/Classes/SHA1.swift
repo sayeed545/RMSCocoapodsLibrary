@@ -1,6 +1,6 @@
 //
 //  SHA1.swift
-//  MainPOS
+//  RMSOAuth
 //
 //  Created by Developer on 29/10/21.
 //

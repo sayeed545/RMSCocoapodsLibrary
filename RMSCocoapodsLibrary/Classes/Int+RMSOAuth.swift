@@ -1,6 +1,6 @@
 //
 //  Int+RMSOAuth.swift
-//  MainPOS
+//  RMSOAuth
 //
 //  Created by Developer on 29/10/21.
 //

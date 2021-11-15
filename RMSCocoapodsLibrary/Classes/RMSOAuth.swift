@@ -1,6 +1,6 @@
 //
 //  RMSOAuth.swift
-//  MainPOS
+//  RMSOAuth
 //
 //  Created by Developer on 29/10/21.
 //
@@ -98,15 +98,15 @@ public class RMSOAuth: NSObject, RMSOAuthRequestHandle {
 }
 
 // MARK: - alias
-extension RMSOAuth {
+public extension RMSOAuth {
 
-    public typealias Parameters = [String: Any]
-    public typealias Headers = [String: String]
-    public typealias ConfigParameters = [String: String]
+     typealias Parameters = [String: Any]
+     typealias Headers = [String: String]
+     typealias ConfigParameters = [String: String]
     // MARK: callback alias
-    public typealias TokenSuccess = (credential: RMSOAuthCredential, response: RMSOAuthResponse?, parameters: Parameters)
-    public typealias TokenCompletionHandler = (Result<TokenSuccess, RMSOAuthError>) -> Void
-    public typealias TokenRenewedHandler = (Result<RMSOAuthCredential, Never>) -> Void
+     typealias TokenSuccess = (credential: RMSOAuthCredential, response: RMSOAuthResponse?, parameters: Parameters)
+     typealias TokenCompletionHandler = (Result<TokenSuccess, RMSOAuthError>) -> Void
+     typealias TokenRenewedHandler = (Result<RMSOAuthCredential, Never>) -> Void
 
 }
 
