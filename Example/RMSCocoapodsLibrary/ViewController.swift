@@ -57,53 +57,25 @@ class ViewController: UIViewController {
                             let results: NSArray = appJson["terminals"] as! NSArray
 
                             self.rmsOAuth.client.setActiveTerminal(terminal: results[0] as! NSDictionary)
-                            self.rmsOAuth.client.CreateTransaction(amount: 2222, currency: "GBP", transactionType: "SALE", completion: { result2 in
-                                print("CreateTransaction result:::::::",result2);
-                                switch result2 {
-                                case .success(let data2):
-                                  print("result success datadatadatadata:::::::",data2)
-                                    let response2: RMSOAuthResponse = data2
-                                    let getresponse2 = response2.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+                            self.rmsOAuth.client.getTransactionListByAll(transactionType: "SALE,REFUND", transactionStage: "", transactionStatus: "", parameters: [:], headers: nil, completionHandler: { result in
+                                switch result {
+                                case .success(let data):
+                                    let response: RMSOAuthResponse = data
+                                    let getResponse = response.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
 
-                                    if let data2 = getresponse2!.data(using: String.Encoding.utf8) {
+                                    if let data = getResponse!.data(using: String.Encoding.utf8) {
                                         do {
-                                            let json2 = try JSONSerialization.jsonObject(with: data2, options: .mutableContainers) as? [String:Any]
-                                            print("CreateTransaction json2111::::::::",json2!);
-                                            let transactionURL : NSString = "\(((json2!["_links"] as! NSDictionary).value(forKey: "self") as! NSDictionary).value(forKey: "href") as! NSString)" as NSString;
-                                            let transArr = transactionURL.components(separatedBy: "/")
-                                            print("transArr::: %@",transArr.last!)
-                                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                                self.rmsOAuth.client.requestReportByType(type: "XBAL", completionHandler: { result2 in
-                                                    switch result2 {
-                                                    case .success(let data2):
-                                                        let response2: RMSOAuthResponse = data2
-                                                        let getresponse2 = response2.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-
-                                                        if let data2 = getresponse2!.data(using: String.Encoding.utf8) {
-                                                            do {
-                                                                let json2 = try JSONSerialization.jsonObject(with: data2, options: .mutableContainers) as? [String:Any]
-                                                                print("requestReportByType json2222::::::::",json2!);
-
-                                                               
-                                                            } catch {
-                                                                print("Something went wrong")
-                                                            }
-                                                        }
-
-                                                    case .failure(let error):
-                                                      print(error.localizedDescription)
-                                                    }
-                                                })
-                                              
-                                                
+                                            let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any]
+                                            if let appJson = json!["_embedded"] as? Dictionary<String, Any> {
+                                                let results: NSArray = appJson["transactions"] as! NSArray
+                                                print("getTransactionListByAll result:::::",results.count);
+                                            
                                             }
 
-                                           
                                         } catch {
                                             print("Something went wrong")
                                         }
                                     }
-
                                 case .failure(let error):
                                   print(error.localizedDescription)
                                 }
