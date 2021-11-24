@@ -14,7 +14,7 @@ public class RMSOAuth2: RMSOAuth {
     open var accessTokenBasicAuthentification = false
 
     /// Set to true to deactivate state check. Be careful of CSRF
-    open var allowMissingStateCheck: Bool = false
+    open var allowMissingStateCheck: Bool = true
 
     /// Encode callback url, some services require it to be encoded.
     open var encodeCallbackURL: Bool = false
