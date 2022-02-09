@@ -90,8 +90,8 @@ class ViewController: UIViewController {
                 let errorResponse: RMSOAuthError = error;
                 print("error response",errorResponse);
                 print("error errorUserInfo",errorResponse.errorUserInfo["statusCode"] as! Int );
-                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
-                AlertPresenter().showAlert(message: "\(errorStatus)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+//                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+//                AlertPresenter().showAlert(message: "\(errorStatus)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
 //                let alert = UIAlertController(title: "", message: "\(errorStatus)", preferredStyle: .alert)
 //                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
 //                self.present(alert, animated: true, completion: nil)
