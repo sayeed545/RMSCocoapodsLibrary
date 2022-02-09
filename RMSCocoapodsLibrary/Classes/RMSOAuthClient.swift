@@ -53,34 +53,28 @@ open class RMSOAuthClient: NSObject {
     
     @discardableResult
     open func getTerminalList( parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
-        print("base url: %@",self.credential.baseURL)
         return self.request("\(self.credential.baseURL)/terminal", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
     }
     
     @discardableResult
     open func getTransactionList( parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
-        print("base url: %@",self.credential.baseURL)
         return self.request("\(self.activeTerminalURL)/transaction", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
     }
     @discardableResult
-    open func getTransactionListByType(transactionType: String = "", parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
-        print("base url: %@",self.credential.baseURL)
-        return self.request("\(self.activeTerminalURL)/transaction?transactionType=\("transactionType")", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
+    open func getTransactionListByType(transactionType: String, parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
+        return self.request("\(self.activeTerminalURL)/transaction?transactionType=\(transactionType)", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
     }
     @discardableResult
-    open func getTransactionListByStage(transactionStage: String = "", parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
-        print("base url: %@",self.credential.baseURL)
-        return self.request("\(self.activeTerminalURL)/transaction?transactionStage=\("transactionStage")", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
+    open func getTransactionListByStage(transactionStage: String, parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
+        return self.request("\(self.activeTerminalURL)/transaction?transactionStage=\(transactionStage)", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
     }
     @discardableResult
-    open func getTransactionListByStatus(transactionStatus: String = "", parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
-        print("base url: %@",self.credential.baseURL)
-        return self.request("\(self.activeTerminalURL)/transaction?transactionStatus=\("transactionStatus")", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
+    open func getTransactionListByStatus(transactionStatus: String, parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
+        return self.request("\(self.activeTerminalURL)/transaction?transactionStatus=\(transactionStatus)", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
     }
     @discardableResult
-    open func getTransactionListByAll(transactionType: String? = "", transactionStage: String? = "", transactionStatus: String? = "", parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
-        print("base url: %@",self.credential.baseURL)
-        return self.request("\(self.activeTerminalURL)/transaction?transactionType=\("transactionType")&transactionStage=\("transactionStage")&transactionStatus=\("transactionStatus")", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
+    open func getTransactionListByAll(transactionType: String, transactionStage: String, transactionStatus: String, parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {
+        return self.request("\(self.activeTerminalURL)/transaction?transactionType=\(transactionType)&transactionStage=\(transactionStage)&transactionStatus=\(transactionStatus)", method: .GET, parameters: parameters, headers: headers, completionHandler: completion)
     }
     @discardableResult
     open func checkTransactionStatus(transactionId: String, parameters: RMSOAuth.Parameters = [:], headers: RMSOAuth.Headers? = nil, completionHandler completion: RMSOAuthHTTPRequest.CompletionHandler?) -> RMSOAuthRequestHandle? {

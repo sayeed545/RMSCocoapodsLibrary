@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'RMSCocoapodsLibrary'
-  s.version          = '0.1.2'
+  s.version          = '1.0.0'
   s.summary          = 'This is a simple cocopods RMS Authentication.'
 
 # This description is used to generate tags and improve search results.

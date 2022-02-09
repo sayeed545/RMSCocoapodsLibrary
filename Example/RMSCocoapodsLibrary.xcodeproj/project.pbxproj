@@ -15,6 +15,11 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		8B6B999B274FAFA4002CD209 /* CreateTransactionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B9996274FAFA4002CD209 /* CreateTransactionVC.swift */; };
+		8B6B999C274FAFA4002CD209 /* TerminalsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B9997274FAFA4002CD209 /* TerminalsVC.swift */; };
+		8B6B999D274FAFA4002CD209 /* TransactionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B9998274FAFA4002CD209 /* TransactionList.swift */; };
+		8B6B999E274FAFA4002CD209 /* TerminalDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B9999274FAFA4002CD209 /* TerminalDetailVC.swift */; };
+		8B6B999F274FAFA4002CD209 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6B999A274FAFA4002CD209 /* LoginVC.swift */; };
 		8B9F63612742B39200E515BE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9F63602742B39200E515BE /* SceneDelegate.swift */; };
 		C99B21514B5BEE96017E8830 /* Pods_RMSCocoapodsLibrary_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23627800AA60450A86959447 /* Pods_RMSCocoapodsLibrary_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -48,6 +53,11 @@
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		7BA1FC91458FF6C8CB8654BB /* Pods-RMSCocoapodsLibrary_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RMSCocoapodsLibrary_Example.release.xcconfig"; path = "Target Support Files/Pods-RMSCocoapodsLibrary_Example/Pods-RMSCocoapodsLibrary_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7CBC635859E0088094863F67 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		8B6B9996274FAFA4002CD209 /* CreateTransactionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTransactionVC.swift; sourceTree = "<group>"; };
+		8B6B9997274FAFA4002CD209 /* TerminalsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TerminalsVC.swift; sourceTree = "<group>"; };
+		8B6B9998274FAFA4002CD209 /* TransactionList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionList.swift; sourceTree = "<group>"; };
+		8B6B9999274FAFA4002CD209 /* TerminalDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TerminalDetailVC.swift; sourceTree = "<group>"; };
+		8B6B999A274FAFA4002CD209 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		8B9F63602742B39200E515BE /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8E04F63D77CD69F2A00F1213 /* Pods-RMSCocoapodsLibrary_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RMSCocoapodsLibrary_Tests.release.xcconfig"; path = "Target Support Files/Pods-RMSCocoapodsLibrary_Tests/Pods-RMSCocoapodsLibrary_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FB9A77CE3D3E24F9948A1C0C /* Pods_RMSCocoapodsLibrary_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RMSCocoapodsLibrary_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +114,11 @@
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
+				8B6B9996274FAFA4002CD209 /* CreateTransactionVC.swift */,
+				8B6B999A274FAFA4002CD209 /* LoginVC.swift */,
+				8B6B9999274FAFA4002CD209 /* TerminalDetailVC.swift */,
+				8B6B9997274FAFA4002CD209 /* TerminalsVC.swift */,
+				8B6B9998274FAFA4002CD209 /* TransactionList.swift */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for RMSCocoapodsLibrary";
@@ -218,6 +233,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 7J7Y2NYAS9;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
@@ -339,8 +355,13 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				8B6B999F274FAFA4002CD209 /* LoginVC.swift in Sources */,
 				8B9F63612742B39200E515BE /* SceneDelegate.swift in Sources */,
 				368BD05427B39143002F0262 /* AlertPresenter.swift in Sources */,
+				8B6B999C274FAFA4002CD209 /* TerminalsVC.swift in Sources */,
+				8B6B999E274FAFA4002CD209 /* TerminalDetailVC.swift in Sources */,
+				8B6B999D274FAFA4002CD209 /* TransactionList.swift in Sources */,
+				8B6B999B274FAFA4002CD209 /* CreateTransactionVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,13 +507,15 @@
 			baseConfigurationReference = 0A8A348443D9CB7105ABAC9C /* Pods-RMSCocoapodsLibrary_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7J7Y2NYAS9;
 				INFOPLIST_FILE = RMSCocoapodsLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kachyng.RMSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -501,13 +524,15 @@
 			baseConfigurationReference = 7BA1FC91458FF6C8CB8654BB /* Pods-RMSCocoapodsLibrary_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7J7Y2NYAS9;
 				INFOPLIST_FILE = RMSCocoapodsLibrary/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kachyng.RMSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
