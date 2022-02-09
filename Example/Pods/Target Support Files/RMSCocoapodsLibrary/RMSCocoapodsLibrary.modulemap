@@ -1,0 +1,6 @@
+framework module RMSCocoapodsLibrary {
+  umbrella header "RMSCocoapodsLibrary-umbrella.h"
+
+  export *
+  module * { export * }
+}

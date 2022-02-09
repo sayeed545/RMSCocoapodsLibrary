@@ -1,0 +1,16 @@
+PODS:
+  - RMSCocoapodsLibrary (0.1.0)
+
+DEPENDENCIES:
+  - RMSCocoapodsLibrary (from `../`)
+
+EXTERNAL SOURCES:
+  RMSCocoapodsLibrary:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  RMSCocoapodsLibrary: b73a3a4c6f81e7e87672b7bc23f38fb223fece2c
+
+PODFILE CHECKSUM: 9cc0b42428868901075e03908a4f2e4553ad35f7
+
+COCOAPODS: 1.11.2

@@ -31,7 +31,7 @@ public enum RMSOAuthError: Error {
     case cancelled
 
     /// Generic request error
-    case requestError(error: Error, request: URLRequest)
+    case requestError(error: Error, request: URLRequest, statusCode: Int)
     /// The provided token is expired, retrieve new token by using the refresh token
     case tokenExpired(error: Error?)
     /// If the user has not either allowed or denied the request yet, the authorization server will return the authorization_pending error.
@@ -84,13 +84,14 @@ public enum RMSOAuthError: Error {
     public var underlyingError: Error? {
         switch self {
         case .tokenExpired(let e): return e
-        case .requestError(let e, _): return e
+        case .requestError(let e, _, _): return e
         case .authorizationPending(let e, _): return e
         case .slowDown(let e, _): return e
         case .accessDenied(let e, _): return e
         default: return nil
         }
     }
+    
 
     public var underlyingMessage: String? {
         switch self {
@@ -116,7 +117,7 @@ extension RMSOAuthError: CustomStringConvertible {
         case .requestCreation(let m): return "requestCreation[\(m)]"
         case .missingToken: return "missingToken"
         case .retain: return "retain"
-        case .requestError(let e, _): return "requestError[\(e)]"
+        case .requestError(let e, _, _): return "requestError[\(e)]"
         case .slowDown : return "slowDown"
         case .accessDenied : return "accessDenied"
         case .authorizationPending: return "authorizationPending"
@@ -153,7 +154,7 @@ extension RMSOAuthError: CustomNSError {
         case .requestCreation(let m): return ["message": m]
 
         case .tokenExpired(let e): return ["error": e as Any]
-        case .requestError(let e, let request): return ["error": e, "request": request]
+        case .requestError(let e, let request, let code): return ["error": e, "request": request, "statusCode": code]
         case .authorizationPending(let e, let request): return ["error": e, "request": request]
         case .slowDown(let e, let request): return ["error": e, "request": request]
         case .accessDenied(let e, let request): return ["error": e, "request": request]

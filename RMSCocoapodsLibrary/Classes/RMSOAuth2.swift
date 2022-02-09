@@ -121,7 +121,7 @@ public class RMSOAuth2: RMSOAuth {
                 responseParameters += fragment.parametersFromQueryString
             }
             //RMSOAuth.log?.trace("Parsed url parameters: \(responseParameters)")
-
+            
             if let accessToken = responseParameters["access_token"] {
                 this.client.credential.oauthToken = accessToken.safeStringByRemovingPercentEncoding
                 if let expiresIn: String = responseParameters["expires_in"], let offset = Double(expiresIn) {

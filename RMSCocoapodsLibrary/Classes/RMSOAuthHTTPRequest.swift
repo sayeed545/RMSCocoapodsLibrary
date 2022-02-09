@@ -126,7 +126,7 @@ open class RMSOAuthHTTPRequest: NSObject, RMSOAuthRequestHandle {
 
         // MARK: failure error returned by server
         if let error = error {
-            var oauthError: RMSOAuthError = .requestError(error: error, request: request)
+            var oauthError: RMSOAuthError = .requestError(error: error, request: request , statusCode: 500)
             let nsError = error as NSError
             if nsError.code == NSURLErrorCancelled {
                 oauthError = .cancelled
@@ -148,11 +148,11 @@ open class RMSOAuthHTTPRequest: NSObject, RMSOAuthRequestHandle {
             if let response = resp { // there is only no data
                 userInfo[RMSOAuthError.ResponseKey] = response
             }
-            if let response = resp as? HTTPURLResponse {
-                userInfo["Response-Headers"] = response.allHeaderFields
-            }
+//            if let response = resp as? HTTPURLResponse {
+//                userInfo["Response-Headers"] = response.allHeaderFields
+//            }
             let error = NSError(domain: RMSOAuthError.Domain, code: badRequestCode, userInfo: userInfo)
-            completion?(.failure(.requestError(error: error, request: request)))
+            completion?(.failure(.requestError(error: error, request: request, statusCode: badRequestCode)))
             return
         }
 
@@ -167,6 +167,7 @@ open class RMSOAuthHTTPRequest: NSObject, RMSOAuthRequestHandle {
             if let responseJSON = responseJSON as? RMSOAuth.Parameters {
                 if let code = responseJSON["error"] as? String {
                     errorCode = code
+                    print("error code",responseJSON,errorCode as Any);
                     if  let description = responseJSON["error_description"] as? String {
                         localizedDescription = NSLocalizedString("\(code) \(description)", comment: "")
                     } else {
@@ -200,7 +201,7 @@ open class RMSOAuthHTTPRequest: NSObject, RMSOAuthRequestHandle {
             } else if errorCode == "access_denied" {
                 completion?(.failure(.accessDenied(error: error, request: request)))
             } else {
-                completion?(.failure(.requestError(error: error, request: request)))
+                completion?(.failure(.requestError(error: error, request: request, statusCode: response.statusCode)))
             }
             return
         }
@@ -506,7 +507,8 @@ extension RMSOAuthHTTPRequest {
         if status == 511 { description = "Network Authentication Required" }
 
         if description != nil {
-            s += ": " + description! + ", Response: " + responseString
+           // s += ": " + description! + ", Response: " + responseString
+            s = "1111" + description!
         }
 
         return s
