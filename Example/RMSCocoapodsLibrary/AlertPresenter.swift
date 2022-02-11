@@ -1,16 +1,16 @@
 //
 //  AlertPresenter.swift
-//  Exelon
+//  RMSCocoapodsLibrary
 //
-//  Created by Developer on 27/05/19.
-//  Copyright © 2019 OTSI. All rights reserved.
+//  Created by RMSCocoapodsLibrary on 03/02/22.
+//  Copyright © 2022 RMSCocoapodsLibrary. All rights reserved.
 //
 
 import Foundation
 import UIKit
 class AlertPresenter {
     
-    func showAlert(title:String? = "Exelon",message:String,confirmTitle:String? = "OK", canceltitle:String? = nil,onVc:UIViewController,confirmAction:((UIAlertAction) -> Void)? = nil, cancelAction:((UIAlertAction) -> Void)? = nil) {
+    func showAlert(title:String? = "RMS",message:String,confirmTitle:String? = "OK", canceltitle:String? = nil,onVc:UIViewController,confirmAction:((UIAlertAction) -> Void)? = nil, cancelAction:((UIAlertAction) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         if let confirm  = confirmTitle {

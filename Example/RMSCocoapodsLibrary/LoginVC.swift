@@ -12,8 +12,8 @@ import RMSCocoapodsLibrary
 class LoginVC: UIViewController {
 
     let scope = "rms/pos:read+rms/pos:write";
-    //let redirectURL =  URL.init(string: "rmssdk://www.rmssdk.com/callback");
-    let redirectURL =  URL.init(string: "kepos://");
+    let redirectURL =  URL.init(string: "rmssdk://www.rmssdk.com/callback");
+    //let redirectURL =  URL.init(string: "kepos://");
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var activityView = UIActivityIndicatorView(activityIndicatorStyle: .large)
     
@@ -43,7 +43,15 @@ class LoginVC: UIViewController {
                 self.activityView.stopAnimating();
                 self.activityView.removeFromSuperview();
                 self.loginbutton.isHidden = false;
-                print(error.localizedDescription)
+                print(error.localizedDescription);
+                let errorResponse: RMSOAuthError = error;
+                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+                switch errorStatus {
+                case 401:
+                    AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                default:
+                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                }
             }
         })
         }
@@ -72,7 +80,15 @@ class LoginVC: UIViewController {
                     self.navigationController?.pushViewController(terminalvc, animated: true)
                     }
             case .failure(let error):
-              print(error.localizedDescription)
+                print(error.localizedDescription);
+                let errorResponse: RMSOAuthError = error;
+                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+                switch errorStatus {
+                case 401:
+                    AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                default:
+                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                }
             }
         })
     }

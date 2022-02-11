@@ -507,8 +507,8 @@ extension RMSOAuthHTTPRequest {
         if status == 511 { description = "Network Authentication Required" }
 
         if description != nil {
-           // s += ": " + description! + ", Response: " + responseString
-            s = "1111" + description!
+            s += ": " + description! + ", Response: " + responseString
+           // s = "1111" + description!
         }
 
         return s

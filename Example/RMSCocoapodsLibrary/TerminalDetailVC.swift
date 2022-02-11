@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RMSCocoapodsLibrary
 
 @available(iOS 13.0, *)
 class TerminalDetailVC: UIViewController {
@@ -43,7 +44,21 @@ class TerminalDetailVC: UIViewController {
                 self.reportUpdate.isHidden = false;
                 self.reportUpdate.text = "XBAL Report created successfully"
             case .failure(let error):
-              print(error.localizedDescription)
+                print(error.localizedDescription);
+                let errorResponse: RMSOAuthError = error;
+                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+                switch errorStatus {
+                case 400:
+                    AlertPresenter().showAlert(message: .rReport400, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 401:
+                    AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 404:
+                    AlertPresenter().showAlert(message: .rReport404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 500:
+                    AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                default:
+                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                }
             }
         })
     }
@@ -57,7 +72,21 @@ class TerminalDetailVC: UIViewController {
                 self.reportUpdate.isHidden = false;
                 self.reportUpdate.text = "ZBAL Report created successfully"
             case .failure(let error):
-              print(error.localizedDescription)
+                print(error.localizedDescription);
+                let errorResponse: RMSOAuthError = error;
+                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+                switch errorStatus {
+                case 400:
+                    AlertPresenter().showAlert(message: .rReport400, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 401:
+                    AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 404:
+                    AlertPresenter().showAlert(message: .rReport404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 500:
+                    AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                default:
+                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                }
             }
         })
     }
@@ -71,7 +100,21 @@ class TerminalDetailVC: UIViewController {
                 self.reportUpdate.isHidden = false;
                 self.reportUpdate.text = "EOD Report created successfully"
             case .failure(let error):
-              print(error.localizedDescription)
+                print(error.localizedDescription);
+                let errorResponse: RMSOAuthError = error;
+                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+                switch errorStatus {
+                case 400:
+                    AlertPresenter().showAlert(message: .rReport400, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 401:
+                    AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 404:
+                    AlertPresenter().showAlert(message: .rReport404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 500:
+                    AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                default:
+                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                }
             }
         })
     }

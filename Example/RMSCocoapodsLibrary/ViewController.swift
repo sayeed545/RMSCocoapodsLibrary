@@ -35,7 +35,15 @@ class ViewController: UIViewController {
                 defaults.set(credential.oauthRefreshToken, forKey: "refreshToken")
                 self.getTerminals()
             case .failure(let error):
-              print(error.localizedDescription)
+                print(error.localizedDescription);
+                let errorResponse: RMSOAuthError = error;
+                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+                switch errorStatus {
+                case 401:
+                    AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                default:
+                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                }
             }
         })
     }
@@ -57,70 +65,28 @@ class ViewController: UIViewController {
                         if let appJson = json!["_embedded"] as? Dictionary<String, Any> {
                             print("appJsonappJsonappJsonappJsonappJson",appJson.count)
                             let results: NSArray = appJson["terminals"] as! NSArray
-                            //self.textView.text = "List of RMS Terminals\n"
-                        // self.terminals = results;
-                         //print("self.terminals::::::",self.terminals);
-                         //self.terminalList.reloadData();
- //                           for item in results {
- //                               // Do this
- //                               let terminal: NSDictionary = item as! NSDictionary
- //                            print("Terminal: %@",terminal.value(forKey: "terminalId"))
- //                             //  self.textView.text = String.init(format: "%@\nTerminal: %@",self.textView.text,terminal.value(forKey: "terminalId") as! CVarArg)
- //                           }
-                            
-                            
                         }
                     } catch {
                         print("Something went wrong")
                     }
                 }
-                
-                // Setting
-
- //                let defaults = UserDefaults.standard
- //                defaults.set(credential.oauthToken, forKey: "accessToken")
- //                defaults.set(credential.oauthRefreshToken, forKey: "refreshToken")
-
-                // Getting
-
-
               // Do your request
             case .failure(let error):
                 //print(error.localizedDescription);
                 let errorResponse: RMSOAuthError = error;
                 print("error response",errorResponse);
-                print("error errorUserInfo",errorResponse.errorUserInfo["statusCode"] as! Int );
-//                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
-//                AlertPresenter().showAlert(message: "\(errorStatus)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
-//                let alert = UIAlertController(title: "", message: "\(errorStatus)", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-                
-                
+                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+                print("error errorStatus",errorStatus);
+                switch errorStatus {
+                case 400:
+                    AlertPresenter().showAlert(message: .rTerminal400, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 500:
+                    AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                default:
+                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                }
             }
         })
-//        rmsOAuth.client.get("https://api-terminal-dev1.retailmerchantservices.net/terminal", completionHandler: { result in
-//            print("terminal result:::::::",result);
-//            switch result {
-//            case .success(let data):
-//              print("result success datadatadatadata:::::::",data)
-//                let response: RMSOAuthResponse = data
-//                let getResponse = response.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
-//
-//                if let data = getResponse!.data(using: String.Encoding.utf8) {
-//                    do {
-//                        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any]
-//                        print("json::::::::",json!["_embedded"] as Any)
-//
-//                    } catch {
-//                        print("Something went wrong")
-//                    }
-//                }
-//
-//            case .failure(let error):
-//              print(error.localizedDescription)
-//            }
-//        })
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		368BD05427B39143002F0262 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368BD05327B39143002F0262 /* AlertPresenter.swift */; };
+		368BD05827B3B0A5002F0262 /* ConstantString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368BD05727B3B0A5002F0262 /* ConstantString.swift */; };
 		5A0E598CEB4653FDB4F86520 /* Pods_RMSCocoapodsLibrary_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9A77CE3D3E24F9948A1C0C /* Pods_RMSCocoapodsLibrary_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 		28E1F55C972BD02C6E8C13C0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2F5D7483A17FAB0AC5737B3D /* RMSCocoapodsLibrary.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = RMSCocoapodsLibrary.podspec; path = ../RMSCocoapodsLibrary.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		368BD05327B39143002F0262 /* AlertPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
+		368BD05727B3B0A5002F0262 /* ConstantString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantString.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* RMSCocoapodsLibrary_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RMSCocoapodsLibrary_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,7 +111,6 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				368BD05327B39143002F0262 /* AlertPresenter.swift */,
 				8B9F63602742B39200E515BE /* SceneDelegate.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
@@ -119,6 +120,8 @@
 				8B6B9999274FAFA4002CD209 /* TerminalDetailVC.swift */,
 				8B6B9997274FAFA4002CD209 /* TerminalsVC.swift */,
 				8B6B9998274FAFA4002CD209 /* TransactionList.swift */,
+				368BD05327B39143002F0262 /* AlertPresenter.swift */,
+				368BD05727B3B0A5002F0262 /* ConstantString.swift */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 			);
 			name = "Example for RMSCocoapodsLibrary";
@@ -359,6 +362,7 @@
 				8B9F63612742B39200E515BE /* SceneDelegate.swift in Sources */,
 				368BD05427B39143002F0262 /* AlertPresenter.swift in Sources */,
 				8B6B999C274FAFA4002CD209 /* TerminalsVC.swift in Sources */,
+				368BD05827B3B0A5002F0262 /* ConstantString.swift in Sources */,
 				8B6B999E274FAFA4002CD209 /* TerminalDetailVC.swift in Sources */,
 				8B6B999D274FAFA4002CD209 /* TransactionList.swift in Sources */,
 				8B6B999B274FAFA4002CD209 /* CreateTransactionVC.swift in Sources */,
