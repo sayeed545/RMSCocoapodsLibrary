@@ -15,18 +15,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     let rmsOAuth = RMSOAuth2(
-//        clientID:    "24srb04apnmiojprk37tjt1nup",
-//        clientSecret: "19q5c5jbprvsv30j66nnm7j4t5vlte3pfu516vkr1iiv8tpo38ng",
-//        authorizeUrl:   "https://api-auth-dev1.retailmerchantservices.net/oauth2/authorize",
-//        accessTokenUrl: "https://api-auth-dev1.retailmerchantservices.net/oauth2/token",
-//        responseType:   "code",
-//        baseURL: "https://api-terminal-dev1.retailmerchantservices.net"
-        clientID:    "3c65r36dinkd5n8fo4ud4829cn",
-        clientSecret: "13dpgtvgfnqsn43drq20tdlvttps5m44luha7hauj6d6djua8j7f",
-        authorizeUrl:   "https://api-auth-dev.retailmerchantservices.net/oauth2/authorize",
-        accessTokenUrl: "https://api-auth-dev.retailmerchantservices.net/oauth2/token",
+        clientID:    "24srb04apnmiojprk37tjt1nup",
+        clientSecret: "19q5c5jbprvsv30j66nnm7j4t5vlte3pfu516vkr1iiv8tpo38ng",
+        authorizeUrl:   "https://api-auth-dev1.retailmerchantservices.net/oauth2/authorize",
+        accessTokenUrl: "https://api-auth-dev1.retailmerchantservices.net/oauth2/token",
         responseType:   "code",
-        baseURL: "https://api-terminal-sandbox.retailmerchantservices.net"
+        baseURL: "https://api-terminal-dev1.retailmerchantservices.net"
+//        clientID:    "3c65r36dinkd5n8fo4ud4829cn",
+//        clientSecret: "13dpgtvgfnqsn43drq20tdlvttps5m44luha7hauj6d6djua8j7f",
+//        authorizeUrl:   "https://api-auth-dev.retailmerchantservices.net/oauth2/authorize",
+//        accessTokenUrl: "https://api-auth-dev.retailmerchantservices.net/oauth2/token",
+//        responseType:   "code",
+//        baseURL: "https://api-terminal-sandbox.retailmerchantservices.net"
     )
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

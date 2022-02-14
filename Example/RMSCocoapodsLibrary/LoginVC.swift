@@ -12,8 +12,8 @@ import RMSCocoapodsLibrary
 class LoginVC: UIViewController {
 
     let scope = "rms/pos:read+rms/pos:write";
-    let redirectURL =  URL.init(string: "rmssdk://www.rmssdk.com/callback");
-    //let redirectURL =  URL.init(string: "kepos://");
+    //let redirectURL =  URL.init(string: "rmssdk://www.rmssdk.com/callback");
+    let redirectURL =  URL.init(string: "kepos://");
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var activityView = UIActivityIndicatorView(activityIndicatorStyle: .large)
     

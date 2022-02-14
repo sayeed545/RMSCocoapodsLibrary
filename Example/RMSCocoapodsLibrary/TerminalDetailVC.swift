@@ -54,6 +54,8 @@ class TerminalDetailVC: UIViewController {
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rReport404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
@@ -82,6 +84,8 @@ class TerminalDetailVC: UIViewController {
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rReport404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
@@ -110,6 +114,8 @@ class TerminalDetailVC: UIViewController {
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rReport404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:

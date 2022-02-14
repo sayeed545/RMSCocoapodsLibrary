@@ -80,6 +80,8 @@ class ViewController: UIViewController {
                 switch errorStatus {
                 case 400:
                     AlertPresenter().showAlert(message: .rTerminal400, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:

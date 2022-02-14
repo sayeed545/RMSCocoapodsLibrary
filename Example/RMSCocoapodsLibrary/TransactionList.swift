@@ -96,6 +96,8 @@ class TransactionList: UIViewController, UITableViewDelegate, UITableViewDataSou
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rTransaction404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 409:
                     AlertPresenter().showAlert(message: .rTransaction409, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
@@ -428,6 +430,8 @@ class TransactionList: UIViewController, UITableViewDelegate, UITableViewDataSou
                         AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                     case 404:
                         AlertPresenter().showAlert(message: .rTransactionTrans404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    case 405:
+                        AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                     case 422:
                         AlertPresenter().showAlert(message: .rTransactionTrans422, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                     case 500:

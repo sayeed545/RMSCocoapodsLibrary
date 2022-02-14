@@ -13,6 +13,7 @@ extension String {
     public static let rUnauthorize = "Unauthorized"
     public static let rTerminal400 = "Please check your url."
     public static let rError500 = "Server is not working at the moment, please try again later."
+    public static let rError405 = "Method Not Allowed"
     public static let rTerminalID400 = "Please check your terminal Id."
     public static let rTerminalID404 = "The requested terminal does not exist."
     public static let rReport400 = "Please check your terminal Id and report type."

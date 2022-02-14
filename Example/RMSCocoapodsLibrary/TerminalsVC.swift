@@ -98,6 +98,8 @@ class TerminalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     AlertPresenter().showAlert(message: .rTerminal400, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 401:
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
@@ -128,7 +130,7 @@ class TerminalVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let terminal: NSDictionary = terminals[indexPath.row] as! NSDictionary;
-        print("terminal::::::::::::::::::::::::::",terminal);
+        //print("terminal::::::::::::::::::::::::::",terminal);
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath) as! CustomTableCell
         cell.createTransc.addTarget(self, action: #selector(creatTransaction), for: .touchUpInside)

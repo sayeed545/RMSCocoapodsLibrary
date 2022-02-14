@@ -28,6 +28,8 @@ class CreateTransactionVC: UIViewController {
     @IBOutlet weak var cashbackTranType: UILabel!
     @IBOutlet weak var cashbackTransStage: UILabel!
     
+    @IBOutlet weak var receiptCashBack: UIButton!
+    @IBOutlet weak var receiptTrans: UIButton!
     @IBOutlet weak var cashbackTransStatus: UILabel!
     var transURL : String? = nil;
     
@@ -35,7 +37,7 @@ class CreateTransactionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Create Transaction";
-        print("create transaction:::::::",terminal);
+        //print("create transaction:::::::",terminal);
         transView.isHidden = true;
         transView.layer.borderWidth = 0.5;
         transView.layer.borderColor = UIColor.gray.cgColor;
@@ -62,6 +64,8 @@ class CreateTransactionVC: UIViewController {
     }
     
     @IBAction func saleClicked(_ sender: Any) {
+        self.receiptTrans.isHidden = true;
+        self.receiptCashBack.isHidden = true;
         if amount.text == "0.00" {
             let alert = UIAlertController(title: "", message: "Please Enter Amount", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
@@ -85,7 +89,6 @@ class CreateTransactionVC: UIViewController {
             print("terminal result:::::::",result);
             switch result {
             case .success(let data):
-              print("result success datadatadatadata:::::::",data)
                 let response: RMSOAuthResponse = data
                 //print("data string:::::::::::",data.jsonObject)
                 let getResponse = response.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
@@ -119,6 +122,8 @@ class CreateTransactionVC: UIViewController {
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rTransaction404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 409:
                     AlertPresenter().showAlert(message: .rTransaction409, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
@@ -167,6 +172,8 @@ class CreateTransactionVC: UIViewController {
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rTransaction404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 409:
                     AlertPresenter().showAlert(message: .rTransaction409, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
@@ -210,7 +217,6 @@ class CreateTransactionVC: UIViewController {
             print("terminal result:::::::",result);
             switch result {
             case .success(let data):
-              print("result success datadatadatadata:::::::",data)
                 let response: RMSOAuthResponse = data
                 //print("data string:::::::::::",data.jsonObject)
                 let getResponse = response.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
@@ -242,6 +248,8 @@ class CreateTransactionVC: UIViewController {
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rTransaction404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 409:
                     AlertPresenter().showAlert(message: .rTransaction409, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 500:
@@ -283,12 +291,9 @@ class CreateTransactionVC: UIViewController {
     }
     
     @IBAction func refreshStatus(_ sender: Any) {
-        print("transURL::::: %@",self.transURL!)
         appDelegate.rmsOAuth.client.get(self.transURL!, completionHandler: { result in
-            print("refreshStatus result:::::::",result);
             switch result {
             case .success(let data):
-              print("result success datadatadatadata:::::::",data)
                 let response: RMSOAuthResponse = data
                 //print("data string:::::::::::",data.jsonObject)
                 let getResponse = response.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
@@ -314,6 +319,8 @@ class CreateTransactionVC: UIViewController {
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rTransactionTrans404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 409:
                     AlertPresenter().showAlert(message: .rTransaction409, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 422:
@@ -328,12 +335,9 @@ class CreateTransactionVC: UIViewController {
         
     }
     @IBAction func cancelTransaction(_ sender: Any) {
-        print("transURL::::: %@",self.transURL!)
         appDelegate.rmsOAuth.client.delete(self.transURL!, completionHandler: { result in
-            print("refreshStatus result:::::::",result);
             switch result {
             case .success(let data):
-              print("result success datadatadatadata:::::::",data)
                 let response: RMSOAuthResponse = data
                 //print("data string:::::::::::",data.jsonObject)
                 let getResponse = response.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
@@ -341,7 +345,7 @@ class CreateTransactionVC: UIViewController {
                 if let data = getResponse!.data(using: String.Encoding.utf8) {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any]
-                        print("json refreshStatus::::::::",json!)
+                        print("json cancelTransaction::::::::",json!)
                         self.updateReceiptStatus(jsonValue: json!)
                       
                     } catch {
@@ -359,6 +363,8 @@ class CreateTransactionVC: UIViewController {
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 404:
                     AlertPresenter().showAlert(message: .rTransactionTrans404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 409:
                     AlertPresenter().showAlert(message: .rTransaction409, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 case 422:
@@ -372,6 +378,55 @@ class CreateTransactionVC: UIViewController {
         })
         
     }
+    
+    @IBAction func printReceipt(_ sender: Any) {
+        appDelegate.rmsOAuth.client.get("\(self.transURL!)/ticket", completionHandler: { result in
+            switch result {
+            case .success(let data):
+                let response: RMSOAuthResponse = data
+                //print("data string:::::::::::",data.jsonObject)
+                let getResponse = response.dataString(encoding: String.Encoding(rawValue: String.Encoding.utf8.rawValue))
+                
+                if let data = getResponse!.data(using: String.Encoding.utf8) {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any]
+                        print("json printReceipt::::::::",json!)
+                        //self.updateReceiptStatus(jsonValue: json!)
+                        AlertPresenter().showAlert(message: "\(json!)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                      
+                    } catch {
+                        print("Something went wrong")
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription);
+                let errorResponse: RMSOAuthError = error;
+                let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
+                print("errorResponse.errorUserInfo",errorResponse.errorUserInfo)
+                switch errorStatus {
+                case 400:
+                    AlertPresenter().showAlert(message: .rTransaction400, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 401:
+                    AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 404:
+                    AlertPresenter().showAlert(message: .rTransactionTrans404, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 405:
+                    AlertPresenter().showAlert(message: .rError405, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 409:
+                    AlertPresenter().showAlert(message: .rTransaction409, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 422:
+                    AlertPresenter().showAlert(message: .rTransactionTrans422, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                case 500:
+                    AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                default:
+                    let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
+                    AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                }
+            }
+        })
+        
+    }
+    
     func updateReceiptStatus(jsonValue : [String:Any]) {
         if !transView.isHidden
         {
@@ -400,6 +455,15 @@ class CreateTransactionVC: UIViewController {
             self.cashbackTransStatus.text = "Transaction Status: \(jsonValue["transactionStatus"] ?? "-")";
             self.cashbackFinalAmount.text = "Final Transaction Amount: \(finalAmountText) GBP";
             self.transURL = "\((((jsonValue["_links"] as! NSDictionary).value(forKey: "self") as! NSDictionary).value(forKey: "href")) ?? "")";
+        }
+        if "\(jsonValue["transactionStatus"] ?? "-")" == "SUCCESSFUL" {
+            self.receiptTrans.isHidden = false;
+            self.receiptCashBack.isHidden = false;
+        }
+        else
+        {
+            self.receiptTrans.isHidden = true;
+            self.receiptCashBack.isHidden = true;
         }
     }
     

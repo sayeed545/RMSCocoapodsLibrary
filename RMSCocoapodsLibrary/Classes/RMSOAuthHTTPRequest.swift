@@ -126,7 +126,7 @@ open class RMSOAuthHTTPRequest: NSObject, RMSOAuthRequestHandle {
 
         // MARK: failure error returned by server
         if let error = error {
-            var oauthError: RMSOAuthError = .requestError(error: error, request: request , statusCode: 500)
+            var oauthError: RMSOAuthError = .requestError(error: error, request: request , statusCode: 500, statusMessage:"Server is not working at the moment, please try again later.")
             let nsError = error as NSError
             if nsError.code == NSURLErrorCancelled {
                 oauthError = .cancelled
@@ -152,7 +152,7 @@ open class RMSOAuthHTTPRequest: NSObject, RMSOAuthRequestHandle {
 //                userInfo["Response-Headers"] = response.allHeaderFields
 //            }
             let error = NSError(domain: RMSOAuthError.Domain, code: badRequestCode, userInfo: userInfo)
-            completion?(.failure(.requestError(error: error, request: request, statusCode: badRequestCode)))
+            completion?(.failure(.requestError(error: error, request: request, statusCode: badRequestCode, statusMessage:"Bad request")))
             return
         }
 
@@ -201,7 +201,7 @@ open class RMSOAuthHTTPRequest: NSObject, RMSOAuthRequestHandle {
             } else if errorCode == "access_denied" {
                 completion?(.failure(.accessDenied(error: error, request: request)))
             } else {
-                completion?(.failure(.requestError(error: error, request: request, statusCode: response.statusCode)))
+                completion?(.failure(.requestError(error: error, request: request, statusCode: response.statusCode, statusMessage:errorCode!)))
             }
             return
         }
