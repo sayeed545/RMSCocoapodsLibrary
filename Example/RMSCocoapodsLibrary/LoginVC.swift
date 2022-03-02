@@ -50,7 +50,13 @@ class LoginVC: UIViewController {
                 case 401:
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
-                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
+                    if errorMessage.isEmpty {
+                        AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                    else {
+                        AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
                 }
             }
         })
@@ -87,7 +93,13 @@ class LoginVC: UIViewController {
                 case 401:
                     AlertPresenter().showAlert(message: .rUnauthorize, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
-                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
+                    if errorMessage.isEmpty {
+                        AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                    else {
+                        AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
                 }
             }
         })

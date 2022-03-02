@@ -129,7 +129,13 @@ class CreateTransactionVC: UIViewController {
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
-                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
+                    if errorMessage.isEmpty {
+                        AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                    else {
+                        AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
                 }
             }
         })
@@ -179,7 +185,13 @@ class CreateTransactionVC: UIViewController {
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
-                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
+                    if errorMessage.isEmpty {
+                        AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                    else {
+                        AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
                 }
             }
         })
@@ -255,7 +267,13 @@ class CreateTransactionVC: UIViewController {
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
-                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
+                    if errorMessage.isEmpty {
+                        AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                    else {
+                        AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
                 }
             }
         })
@@ -328,7 +346,13 @@ class CreateTransactionVC: UIViewController {
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
-                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
+                    if errorMessage.isEmpty {
+                        AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                    else {
+                        AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
                 }
             }
         })
@@ -372,7 +396,13 @@ class CreateTransactionVC: UIViewController {
                 case 500:
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
-                    AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
+                    if errorMessage.isEmpty {
+                        AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                    else {
+                        AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
                 }
             }
         })
@@ -391,8 +421,17 @@ class CreateTransactionVC: UIViewController {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any]
                         print("json printReceipt::::::::",json!)
+                        let customerApplicationLabel : NSString = (json!["customerReceipt"] as! NSDictionary).value(forKey: "applicationLabel") as! NSString;
+                        let customerCvmResult : NSString = (json!["customerReceipt"] as! NSDictionary).value(forKey: "cvmResult") as! NSString;
+                        let customerMessage : NSString = (json!["customerReceipt"] as! NSDictionary).value(forKey: "message") as! NSString;
+                        let customerMerchantId : NSString = (json!["customerReceipt"] as! NSDictionary).value(forKey: "merchantId") as! NSString;
+                        let customerTerminalId : NSString = (json!["customerReceipt"] as! NSDictionary).value(forKey: "terminalId") as! NSString;
+                        let merchantAmount : NSString = (json!["merchantReceipt"] as! NSDictionary).value(forKey: "amount") as! NSString;
+                        let merchantApplicationLabel : NSString = (json!["merchantReceipt"] as! NSDictionary).value(forKey: "applicationLabel") as! NSString;
+                        let merchantCvmResult : NSString = (json!["merchantReceipt"] as! NSDictionary).value(forKey: "cvmResult") as! NSString;
+                        let merchantMessage : NSString = (json!["merchantReceipt"] as! NSDictionary).value(forKey: "message") as! NSString;
                         //self.updateReceiptStatus(jsonValue: json!)
-                        AlertPresenter().showAlert(message: "\(json!)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                        AlertPresenter().showAlert(message: "Customer Receipt: \nApplicationLabel:\(customerApplicationLabel)\nCvmResult:\(customerCvmResult)\nMessage:\(customerMessage)\nMerchantId:\(customerMerchantId)\nterminalId:\(customerTerminalId)\n Merchant Receipt:\nAmount:\(merchantAmount)\nApplicationLabel:\(merchantApplicationLabel)\nCvmResult:\(merchantCvmResult)\nMessage:\(merchantMessage)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                       
                     } catch {
                         print("Something went wrong")
@@ -401,6 +440,7 @@ class CreateTransactionVC: UIViewController {
             case .failure(let error):
                 print(error.localizedDescription);
                 let errorResponse: RMSOAuthError = error;
+                AlertPresenter().showAlert(message: "Customer Receipt: \nqwe:qwqe\nasdfasdf:sfsdfsdfdsf\nararaerasfd:sfdsdf", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 let errorStatus = errorResponse.errorUserInfo["statusCode"] as! Int;
                 print("errorResponse.errorUserInfo",errorResponse.errorUserInfo)
                 switch errorStatus {
@@ -420,7 +460,13 @@ class CreateTransactionVC: UIViewController {
                     AlertPresenter().showAlert(message: .rError500, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
                 default:
                     let errorMessage = errorResponse.errorUserInfo["statusMessage"] as! String;
-                    AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    if errorMessage.isEmpty {
+                        AlertPresenter().showAlert(message: "\(errorResponse.localizedDescription)", confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                    else {
+                        AlertPresenter().showAlert(message: errorMessage, confirmTitle: "Dismiss", canceltitle: nil, onVc: self, confirmAction: nil, cancelAction: nil)
+                    }
+                        
                 }
             }
         })
@@ -462,8 +508,8 @@ class CreateTransactionVC: UIViewController {
         }
         else
         {
-            self.receiptTrans.isHidden = true;
-            self.receiptCashBack.isHidden = true;
+            self.receiptTrans.isHidden = false;
+            self.receiptCashBack.isHidden = false;
         }
     }
     

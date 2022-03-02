@@ -201,7 +201,7 @@ open class RMSOAuthHTTPRequest: NSObject, RMSOAuthRequestHandle {
             } else if errorCode == "access_denied" {
                 completion?(.failure(.accessDenied(error: error, request: request)))
             } else {
-                completion?(.failure(.requestError(error: error, request: request, statusCode: response.statusCode, statusMessage:errorCode!)))
+                completion?(.failure(.requestError(error: error, request: request, statusCode: response.statusCode, statusMessage:errorCode == nil ? "" : errorCode!)))
             }
             return
         }
