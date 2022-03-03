@@ -85,7 +85,7 @@ class CreateTransactionVC: UIViewController {
         headers["Accept"] = "*/*"
         headers["Content-Type"] = "application/json"
         headers["Connection"] = "keep-alive"
-        appDelegate.rmsOAuth.client.post("\(terminalURL)/transaction", parameters: params1 as! RMSOAuth.Parameters, headers: (headers as! RMSOAuth.Headers), body: nil, completionHandler: { result in
+        appDelegate.rmsOAuth.client.post("\(terminalURL)/transaction111", parameters: params1 as! RMSOAuth.Parameters, headers: (headers as! RMSOAuth.Headers), body: nil, completionHandler: { result in
             print("terminal result:::::::",result);
             switch result {
             case .success(let data):
@@ -508,8 +508,8 @@ class CreateTransactionVC: UIViewController {
         }
         else
         {
-            self.receiptTrans.isHidden = false;
-            self.receiptCashBack.isHidden = false;
+            self.receiptTrans.isHidden = true;
+            self.receiptCashBack.isHidden = true;
         }
     }
     
